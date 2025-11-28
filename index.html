@@ -190,6 +190,16 @@
             opacity: 1;
             transform: none;
         }
+        
+        /* Mobile Menu Specific - High Opacity Blur */
+        .mobile-menu-glass {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(50px) saturate(180%);
+            -webkit-backdrop-filter: blur(50px) saturate(180%);
+        }
+        .dark .mobile-menu-glass {
+            background: rgba(10, 10, 10, 0.98);
+        }
     </style>
 </head>
 <body class="transition-colors duration-300 selection:bg-brand-accent selection:text-white">
@@ -210,16 +220,6 @@
                 <span class="text-2xl font-extrabold tracking-tighter font-heading hidden">AA<span class="text-brand-accent">.</span></span>
             </a>
             
-            <!-- Mobile Horizontal Scroll Menu (Visible on mobile/tablet, hidden on desktop) -->
-            <div class="flex md:hidden items-center gap-6 text-sm font-bold uppercase tracking-wider overflow-x-auto no-scrollbar flex-1 mask-linear-gradient">
-                <a href="#about" class="nav-link hover-trigger text-gray-800 dark:text-gray-200">About</a>
-                <a href="#education" class="nav-link hover-trigger text-gray-800 dark:text-gray-200">Education</a>
-                <a href="#experience" class="nav-link hover-trigger text-gray-800 dark:text-gray-200">Experience</a>
-                <a href="#leadership" class="nav-link hover-trigger text-gray-800 dark:text-gray-200">Leadership</a>
-                <a href="#skills" class="nav-link hover-trigger text-gray-800 dark:text-gray-200">Skills</a>
-                <a href="#social" class="nav-link hover-trigger text-gray-800 dark:text-gray-200">Social</a>
-            </div>
-
             <!-- Desktop Menu (Hidden on mobile) -->
             <div class="hidden md:flex items-center gap-8 text-sm font-bold uppercase tracking-wider">
                 <a href="#about" class="nav-link hover-trigger">About</a>
@@ -227,18 +227,25 @@
                 <a href="#experience" class="nav-link hover-trigger">Experience</a>
                 <a href="#leadership" class="nav-link hover-trigger">Leadership</a>
                 <a href="#skills" class="nav-link hover-trigger">Skills</a>
-                <a href="#social" class="nav-link hover-trigger ">Social</a>
+                <a href="#social" class="nav-link hover-trigger text-brand-accent">Social</a>
             </div>
 
-            <!-- Theme Toggle (Always visible, fixed right) -->
-            <button onclick="toggleTheme()" class="hover-trigger p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors shrink-0 ml-2">
-                <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
-                <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
-            </button>
+            <!-- Theme Toggle & Mobile Menu Button -->
+            <div class="flex items-center gap-2">
+                <button onclick="toggleTheme()" class="hover-trigger p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors shrink-0">
+                    <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+                    <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+                </button>
+                
+                <!-- Mobile Menu Toggle Button (Visible only on mobile) -->
+                <button class="md:hidden hover-trigger p-2" id="mobile-menu-btn" aria-label="Open Menu">
+                    <i data-lucide="menu" class="w-7 h-7 text-brand-black dark:text-white"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <!-- Mobile Menu Overlay - MOVED OUTSIDE NAV TO FIX VISIBILITY -->
+    <!-- Mobile Menu Overlay - Outside Nav -->
     <div id="mobile-menu" class="fixed inset-0 mobile-menu-glass z-[60] transform translate-x-full transition-transform duration-300 flex flex-col justify-start pt-24 items-center gap-8 md:hidden overflow-y-auto">
         <button class="absolute top-6 right-6 hover-trigger p-2 rounded-full bg-gray-100 dark:bg-white/10" id="close-menu-btn" aria-label="Close Menu">
             <i data-lucide="x" class="w-8 h-8"></i>
@@ -251,10 +258,6 @@
         <a href="#leadership" class="text-3xl font-bold hover-trigger font-heading text-black dark:text-white" onclick="closeMenu()">Leadership</a>
         <a href="#skills" class="text-3xl font-bold hover-trigger font-heading text-black dark:text-white" onclick="closeMenu()">Skills</a>
         <a href="#social" class="text-3xl font-bold hover-trigger font-heading text-black dark:text-white" onclick="closeMenu()">Social</a>
-        
-        <button onclick="toggleTheme(); closeMenu()" class="text-xl font-bold hover-trigger flex items-center gap-2 mt-4 px-6 py-2 rounded-full border-2 border-current text-black dark:text-white mb-10">
-            Theme Toggle <i data-lucide="sun" class="w-5 h-5"></i>
-        </button>
     </div>
 
     <!-- Main Content -->
@@ -286,7 +289,7 @@
                         Let's Talk
                     </a>
                     
-                    <a href="https://drive.google.com/file/d/18901Nkq9zmQyacUB9jGPLm9yNjBav1CD/view?usp=sharing" class="hover-trigger w-full sm:w-auto text-center px-8 py-3 border-2 border-black/10 dark:border-white/20 font-bold text-sm uppercase tracking-widest hover:bg-black/5 dark:hover:bg-white/10 transition-all rounded-2xl">
+                    <a href="https://drive.google.com/uc?export=download&id=1-KFP6moiIZMpHOCZGWIeEuhFx_EPCSos" class="hover-trigger w-full sm:w-auto text-center px-8 py-3 border-2 border-black/10 dark:border-white/20 font-bold text-sm uppercase tracking-widest hover:bg-black/5 dark:hover:bg-white/10 transition-all rounded-2xl">
                         Download CV
                     </a>
                 </div>
@@ -660,8 +663,39 @@
             document.documentElement.classList.add('dark');
         }
 
-        // Removed Mobile Menu Functions since overlay is gone
+        // Mobile Menu Logic - RESTORED
+        const mobileMenu = document.getElementById('mobile-menu');
         
+        function closeMenu() {
+            mobileMenu.classList.add('translate-x-full');
+        }
+
+        // Add event listener to the button if it exists
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('translate-x-full');
+            });
+        }
+
+        // Add event listener to close button inside menu
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        if (closeMenuBtn) {
+            closeMenuBtn.addEventListener('click', closeMenu);
+        }
+        
+        // Quran Verse Logic
+        const quranVerses = [
+            { arabic: "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا", text: "So verily, with the hardship, there is relief.", reference: "Surah Ash-Sharh 94:5" },
+            { arabic: "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا", text: "Allah does not burden a soul beyond that it can bear.", reference: "Surah Al-Baqarah 2:286" },
+            { arabic: "وَوَجَدَكَ ضَالًّا فَهَدَىٰ", text: "And He found you lost and guided [you].", reference: "Surah Ad-Duhaa 93:7" },
+            { arabic: "إِنَّ اللَّهَ مَعَ الصَّابِرِينَ", text: "Indeed, Allah is with the patient.", reference: "Surah Al-Baqarah 2:153" },
+            { arabic: "وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَىٰ", text: "And your Lord is going to give you, and you will be satisfied.", reference: "Surah Ad-Duhaa 93:5" },
+            { arabic: "ادْعُونِي أَسْتَجِبْ لَكُمْ", text: "Call upon Me; I will respond to you.", reference: "Surah Ghafir 40:60" },
+            { arabic: "لَقَدْ خَلَقْنَا الْإِنسَانَ فِي كَبَدٍ", text: "And We have certainly created man into hardship.", reference: "Surah Al-Balad 90:4" },
+            { arabic: "وَرَحْمَتِي وَسِعَتْ كُلَّ شَيْءٍ", text: "My Mercy encompasses all things.", reference: "Surah Al-A'raf 7:156" }
+        ];
+
         async function displayRandomVerse() {
             const verseArabicEl = document.getElementById('quran-verse-arabic');
             const verseTextEl = document.getElementById('quran-verse-text');
