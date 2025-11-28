@@ -180,8 +180,17 @@
         }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        .reveal-up { opacity: 0; transform: translateY(30px); transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal-up.active { opacity: 1; transform: translateY(0); }
+        /* Animation Styles - Modified for Mobile Safety */
+        /* Only animate on tablets and desktops (width > 768px) */
+        @media (min-width: 768px) {
+            .reveal-up { opacity: 0; transform: translateY(30px); transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+            .reveal-up.active { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* On mobile, content is always visible (No animation risk) */
+        @media (max-width: 767px) {
+            .reveal-up { opacity: 1 !important; transform: none !important; }
+        }
     </style>
 </head>
 <body class="transition-colors duration-300 selection:bg-brand-accent selection:text-white">
@@ -536,7 +545,24 @@
     </main>
 
     <script>
-        lucide.createIcons();
+        // Scroll Animations - Defined BEFORE Lucide to ensure they work even if icons fail
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.05 });
+
+        document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+
+        // Safe Lucide Loading
+        if (typeof lucide !== 'undefined' && lucide.createIcons) {
+            lucide.createIcons();
+        } else {
+            console.warn("Lucide icons failed to load or are blocked.");
+        }
 
         // Gemini API Configuration
         const apiKey = ""; 
@@ -564,19 +590,6 @@
             el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
         });
-
-        // Scroll Animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    // Stop observing once active to prevent flickering or re-triggering issues
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.05 }); // Lower threshold for mobile responsiveness
-
-        document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
 
         // Typewriter
         const textToType = ["Muslim.", "Bangladeshi.", "DU-MIS Student.", "Business Strategist.", "Marketing Enthusiast.", "Leader."];
