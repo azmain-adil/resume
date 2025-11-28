@@ -215,9 +215,9 @@
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 nav-glass transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <!-- Logo area: Cleaned up as requested -->
             <a href="#" class="hover-trigger flex items-center gap-3 shrink-0 mr-4">
-                <img src="https://github.com/azmain-adil/resume/blob/main/images/logo.png?raw=true" alt="Azmain Adil" class="h-10 md:h-12 w-auto object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
-                <span class="text-2xl font-extrabold tracking-tighter font-heading hidden">AA<span class="text-brand-accent">.</span></span>
+                <img src="https://github.com/azmain-adil/resume/blob/main/images/logo.png?raw=true" alt="Azmain Adil" class="h-10 md:h-12 w-auto object-contain" onerror="this.style.display='none';">
             </a>
             
             <!-- Desktop Menu (Hidden on mobile) -->
@@ -305,25 +305,20 @@
                     <i data-lucide="heart-handshake" class="w-6 h-6 md:w-8 md:h-8 text-brand-accent"></i> Verses To Heal The Soul
                 </h2>
                 
-                <!-- FIX: Added padding (p-8 md:p-12) and removed overflow-hidden to prevent clipping of Arabic diacritics -->
                 <div class="glass-panel p-8 md:p-12 rounded-3xl relative shadow-lg group hover:scale-[1.01] transition-transform duration-300">
                     <div class="absolute top-0 left-0 w-full h-1 bg-brand-accent rounded-t-3xl"></div>
                     
-                    <!-- Arabic Text 
-                         FIX: Changed font to Lateef for proper Indo-Pak support.
-                         FIX: Increased font size to text-4xl/6xl because Lateef is smaller.
-                         FIX: Increased leading to [3] to strictly prevent line overlapping.
-                    -->
+                    <!-- Pre-filled with default verse so "Loading" never shows -->
                     <p id="quran-verse-arabic" class="text-4xl md:text-6xl font-arabic mb-8 text-brand-black dark:text-white leading-[3] py-4 px-2" dir="rtl" lang="ar" style="line-height: 3 !important;">
-                        Loading...
+                        فَإِنَّ مَعَ الْعُسْرِ يُسْرًا
                     </p>
                     
                     <!-- English Translation -->
                     <blockquote class="text-lg md:text-xl font-medium mb-6 text-gray-600 dark:text-gray-300 italic px-2">
-                        <span id="quran-verse-text">Loading verse...</span>
+                        <span id="quran-verse-text">"So verily, with the hardship, there is relief."</span>
                     </blockquote>
                     
-                    <cite id="quran-verse-ref" class="block text-brand-accent font-bold uppercase tracking-wider text-sm md:text-base not-italic"></cite>
+                    <cite id="quran-verse-ref" class="block text-brand-accent font-bold uppercase tracking-wider text-sm md:text-base not-italic">Surah Ash-Sharh 94:5</cite>
                 </div>
             </div>
         </section>
@@ -487,10 +482,10 @@
                         </div>
                     </div>
 
-                    <!-- Skin'O -->
+                    <!-- SkinO - Fixed Spelling from Skin'O -->
                     <div class="reveal-up flex flex-col md:flex-row gap-6 p-6 md:p-8 glass-panel rounded-3xl hover-trigger group">
                         <div class="md:w-1/3 border-b md:border-b-0 md:border-r border-black/5 dark:border-white/10 pb-4 md:pb-0 md:pr-4">
-                            <h3 class="text-xl md:text-2xl font-bold font-heading group-hover:text-brand-accent transition-colors">Skin'O Business Intelligence</h3>
+                            <h3 class="text-xl md:text-2xl font-bold font-heading group-hover:text-brand-accent transition-colors">SkinO Business Intelligence</h3>
                             <p class="text-xs md:text-sm font-bold text-gray-500 uppercase mt-1">Semi-finalist (2025)</p>
                         </div>
                         <div class="md:w-2/3 flex items-center">
@@ -501,7 +496,7 @@
             </div>
         </section>
 
-        <!-- Skills Section -->
+        <!-- Skills Section - REFORMATTED -->
         <section id="skills" class="py-16 md:py-24 px-4 md:px-6">
             <div class="max-w-7xl mx-auto">
                 <h2 class="text-3xl md:text-5xl font-bold mb-10 md:mb-16 reveal-up flex items-center gap-4 text-brand-black dark:text-brand-white bg-white/20 dark:bg-white/5 p-4 rounded-2xl w-fit backdrop-blur-md">
@@ -509,43 +504,58 @@
                 </h2>
                 
                 <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+                    
+                    <!-- Technical Skills -->
                     <div class="reveal-up glass-panel p-6 md:p-8 rounded-3xl">
-                        <h3 class="text-lg md:text-xl font-bold uppercase tracking-widest mb-6 text-gray-500 flex items-center gap-2">
-                            <i data-lucide="code-2" class="w-5 h-5"></i> Technical
+                        <h3 class="text-lg md:text-xl font-bold uppercase tracking-widest mb-6 text-gray-500 flex items-center gap-2 border-b border-gray-200 dark:border-gray-700 pb-2">
+                            <i data-lucide="code-2" class="w-5 h-5"></i> Technical Skills
                         </h3>
-                        <div class="flex flex-wrap gap-2 md:gap-3">
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">MS Office Suite</span>
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">Digital Marketing</span>
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">SEO (Moz, SEMrush)</span>
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">WordPress</span>
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">Google Analytics</span>
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">ChatGPT & AI</span>
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">Canva</span>
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">Adobe Acrobat</span>
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">cPanel</span>
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">Data Entry</span>
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">WPM 60+</span>
-
-                        </div>
+                        <ul class="list-disc pl-5 space-y-2 text-base md:text-lg font-medium text-gray-700 dark:text-gray-300">
+                            <li>MS Office Suite</li>
+                            <li>Digital Marketing</li>
+                            <li>SEO (Moz, SEMrush)</li>
+                            <li>WordPress</li>
+                            <li>Google Analytics</li>
+                            <li>ChatGPT & AI</li>
+                            <li>Canva</li>
+                            <li>Adobe Acrobat</li>
+                            <li>cPanel</li>
+                            <li>Data Entry</li>
+                            <li>WPM 60+</li>
+                        </ul>
                     </div>
 
-                    <div class="reveal-up glass-panel p-6 md:p-8 rounded-3xl">
-                        <h3 class="text-lg md:text-xl font-bold uppercase tracking-widest mb-6 text-gray-500 flex items-center gap-2">
-                            <i data-lucide="sparkles" class="w-5 h-5"></i> Soft Skills & Interests
-                        </h3>
-                        <div class="flex flex-wrap gap-2 md:gap-3">
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">Leadership</span>
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">Event Planning</span>
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">Problem Solving</span>
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">Time Management</span>
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">Multi Tasking</span>
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">Attention To Details</span>
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">Cricket</span>
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">AI</span>
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">Games</span>
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">Technology</span>
-                            <span class="px-3 md:px-4 py-2 bg-white/50 dark:bg-black/20 font-bold hover:text-brand-accent transition-colors cursor-none hover-trigger rounded-xl text-sm md:text-base">Horror Stories</span>
+                    <!-- Soft Skills & Interests -->
+                    <div class="reveal-up glass-panel p-6 md:p-8 rounded-3xl flex flex-col gap-8">
+                        
+                        <!-- Soft Skills -->
+                        <div>
+                            <h3 class="text-lg md:text-xl font-bold uppercase tracking-widest mb-6 text-gray-500 flex items-center gap-2 border-b border-gray-200 dark:border-gray-700 pb-2">
+                                <i data-lucide="sparkles" class="w-5 h-5"></i> Soft Skills
+                            </h3>
+                            <ul class="list-disc pl-5 space-y-2 text-base md:text-lg font-medium text-gray-700 dark:text-gray-300">
+                                <li>Leadership</li>
+                                <li>Event Planning</li>
+                                <li>Problem Solving</li>
+                                <li>Time Management</li>
+                                <li>Multitasking</li> <!-- Spelling Fixed -->
+                                <li>Attention to Detail</li> <!-- Spelling Fixed -->
+                            </ul>
                         </div>
+
+                        <!-- Interests (Moved here) -->
+                        <div>
+                            <h3 class="text-lg md:text-xl font-bold uppercase tracking-widest mb-6 text-gray-500 flex items-center gap-2 border-b border-gray-200 dark:border-gray-700 pb-2">
+                                <i data-lucide="heart" class="w-5 h-5"></i> Interests
+                            </h3>
+                            <ul class="list-disc pl-5 space-y-2 text-base md:text-lg font-medium text-gray-700 dark:text-gray-300">
+                                <li>Cricket</li>
+                                <li>AI Games</li>
+                                <li>Technology</li>
+                                <li>Horror Stories</li>
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -591,9 +601,11 @@
             <div class="max-w-7xl mx-auto text-center reveal-up">
                 <h2 class="text-3xl md:text-6xl font-extrabold mb-8 font-heading text-brand-black dark:text-brand-white">Ready to create something great?</h2>
                 <div class="flex flex-col md:flex-row justify-center gap-4 md:gap-6 mt-8">
+                    <!-- Added mailto -->
                     <a href="mailto:azmain-19th-2023312845@mis.du.ac.bd" class="hover-trigger px-8 md:px-10 py-3 md:py-4 bg-brand-black text-white dark:bg-white dark:text-black font-bold text-base md:text-lg uppercase tracking-widest hover:bg-brand-accent hover:text-white transition-colors rounded-2xl">
                         Email Me
                     </a>
+                    <!-- Added tel -->
                     <a href="tel:+8801731504405" class="hover-trigger px-8 md:px-10 py-3 md:py-4 border-2 border-brand-black dark:border-white text-brand-black dark:text-white font-bold text-base md:text-lg uppercase tracking-widest hover:bg-brand-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors rounded-2xl">
                         Call Me
                     </a>
@@ -790,6 +802,9 @@
                     shownIds.push(randomId);
                     localStorage.setItem('shownQuranIds', JSON.stringify(shownIds));
                 } else {
+                    // API failed but returned 200? fallback logic handles it if we throw or just do nothing
+                    // If we do nothing, the HTML default remains. 
+                    // To be safe and show *variety* if API fails, we use the fallback list logic below:
                     throw new Error('Invalid API response');
                 }
             } catch (error) {
