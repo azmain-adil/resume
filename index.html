@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth overflow-x-hidden">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -180,16 +180,10 @@
         }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        /* Animation Styles - Modified for Mobile Safety */
-        /* Only animate on tablets and desktops (width > 768px) */
-        @media (min-width: 768px) {
-            .reveal-up { opacity: 0; transform: translateY(30px); transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-            .reveal-up.active { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* On mobile, content is always visible (No animation risk) */
-        @media (max-width: 767px) {
-            .reveal-up { opacity: 1 !important; transform: none !important; }
+        /* SAFE VISIBILITY: Content is visible by default */
+        .reveal-up {
+            opacity: 1;
+            transform: none;
         }
     </style>
 </head>
