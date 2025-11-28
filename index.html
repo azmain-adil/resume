@@ -242,7 +242,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="pt-24 pb-12 w-full overflow-hidden">
+    <main class="pt-24 pb-12 w-full overflow-x-hidden">
         
         <!-- Hero Section -->
         <section id="about" class="min-h-[85vh] flex flex-col justify-center items-start px-4 md:px-6 max-w-7xl mx-auto">
@@ -568,9 +568,13 @@
         // Scroll Animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Stop observing once active to prevent flickering or re-triggering issues
+                    observer.unobserve(entry.target);
+                }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.05 }); // Lower threshold for mobile responsiveness
 
         document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
 
