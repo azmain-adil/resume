@@ -94,17 +94,17 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 250%; /* Large enough to rotate covering corners */
-            height: 250%;
+            /* FIX: Use vmax to ensure a large square coverage regardless of container aspect ratio */
+            width: 200vmax; 
+            height: 200vmax;
             transform: translate(-50%, -50%);
             
-            /* The Beam: Clear head, fading tail. 
-               Because this is behind ::after, it only shows in the padding gap */
+            /* The Beam: Clear head, fading tail. */
             background: conic-gradient(
                 from 0deg, 
                 transparent 0deg, 
-                transparent 250deg, 
-                rgba(255, 255, 255, 0.8) 320deg, /* Bright White Head */
+                transparent 270deg, 
+                rgba(255, 255, 255, 1.0) 320deg, /* Bright White Head */
                 transparent 360deg
             );
             
@@ -315,7 +315,7 @@
                 </h2>
                 
                 <div class="glass-panel p-8 md:p-12 relative shadow-lg group hover:scale-[1.01] transition-transform duration-300">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-brand-accent rounded-t-[20px]"></div>
+                    <!-- Removed the blue line divider here -->
                     <p id="quran-verse-arabic" class="text-4xl md:text-6xl font-arabic mb-8 text-brand-black dark:text-white leading-[3] py-4 px-2" dir="rtl" lang="ar" style="line-height: 3 !important;">
                         فَإِنَّ مَعَ الْعُسْرِ يُسْرًا
                     </p>
