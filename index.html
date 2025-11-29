@@ -100,16 +100,28 @@
             transform: translate(-50%, -50%);
             
             /* The Beam: Clear head, fading tail. */
+            /* DEFAULT (Light Mode): Brand Blue Beam */
             background: conic-gradient(
                 from 0deg, 
                 transparent 0deg, 
                 transparent 270deg, 
-                rgba(255, 255, 255, 1.0) 320deg, /* Bright White Head */
+                #007AFF 320deg, /* Changed to Brand Blue */
                 transparent 360deg
             );
             
             animation: rotate-border 6s linear infinite;
             z-index: -2;
+        }
+
+        /* Dark Mode Override: White Beam */
+        .dark .glass-panel::before {
+            background: conic-gradient(
+                from 0deg, 
+                transparent 0deg, 
+                transparent 270deg, 
+                rgba(255, 255, 255, 1.0) 320deg,
+                transparent 360deg
+            );
         }
 
         /* 2. The Inner "Card" (Sits on top, creating the masked border) */
