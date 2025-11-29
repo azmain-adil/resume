@@ -27,7 +27,7 @@
                     animation: {
                         'blob': 'blob 7s infinite',
                         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'water': 'water 20s infinite ease-in-out', /* New Water Animation */
+                        'water': 'water 20s infinite ease-in-out',
                     },
                     keyframes: {
                         blob: {
@@ -36,7 +36,6 @@
                             '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
                             '100%': { transform: 'translate(0px, 0px) scale(1)' },
                         },
-                        /* New Keyframes for Bouncing Water Ball */
                         water: {
                             '0%': { transform: 'translate(0, 0) scale(1)' },
                             '20%': { transform: 'translate(30vw, -10vh) scale(1.2)' },
@@ -56,7 +55,6 @@
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font for Arabic text: Lateef is standard for Indo-Pak style script -->
     <link href="https://fonts.googleapis.com/css2?family=Lateef:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
@@ -75,38 +73,41 @@
             font-family: 'Outfit', sans-serif;
         }
 
-        /* Arabic Font Class - Updated to Lateef */
         .font-arabic {
             font-family: 'Lateef', serif;
         }
 
-        /* --- iOS Glassmorphism --- */
+        /* --- iOS Modern Glassmorphism (Applied strictly as requested) --- */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.65);
+            background: rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            border-radius: 20px !important; /* Force the requested radius */
         }
+        
         .dark .glass-panel {
-            background: rgba(30, 30, 30, 0.60);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.08); /* Adjusted slightly for dark mode contrast */
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        /* Nav Glass - Transparent Glass Effect */
+        /* Nav Glass - Frosted Effect */
         .nav-glass {
-            background: rgba(255, 255, 255, 0.65); /* More transparent */
+            background: rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
+        
         .dark .nav-glass {
-            background: rgba(0, 0, 0, 0.65); /* Dark transparent */
+            background: rgba(0, 0, 0, 0.2); /* Darker tint for navbar in dark mode */
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Hide Scrollbar for Horizontal Nav */
+        /* Hide Scrollbar */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -185,20 +186,20 @@
         }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        /* SAFE VISIBILITY: Content is visible by default */
         .reveal-up {
             opacity: 1;
             transform: none;
         }
         
-        /* Mobile Menu Specific - High Opacity Blur */
+        /* Mobile Menu Glass Effect */
         .mobile-menu-glass {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(50px) saturate(180%);
-            -webkit-backdrop-filter: blur(50px) saturate(180%);
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border-left: 1px solid rgba(255, 255, 255, 0.25);
         }
         .dark .mobile-menu-glass {
-            background: rgba(10, 10, 10, 0.98);
+            background: rgba(10, 10, 10, 0.85);
         }
     </style>
 </head>
@@ -215,12 +216,12 @@
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 nav-glass transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <!-- Logo area: Cleaned up as requested -->
+            <!-- Logo area -->
             <a href="#" class="hover-trigger flex items-center gap-3 shrink-0 mr-4">
                 <img src="https://github.com/azmain-adil/resume/blob/main/images/logo.png?raw=true" alt="Azmain Adil" class="h-10 md:h-12 w-auto object-contain" onerror="this.style.display='none';">
             </a>
             
-            <!-- Desktop Menu (Hidden on mobile) -->
+            <!-- Desktop Menu -->
             <div class="hidden md:flex items-center gap-8 text-sm font-bold uppercase tracking-wider">
                 <a href="#about" class="nav-link hover-trigger">About</a>
                 <a href="#education" class="nav-link hover-trigger">Education</a>
@@ -238,7 +239,6 @@
                     <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
                 </button>
                 
-                <!-- Mobile Menu Toggle Button (Visible only on mobile) -->
                 <button class="md:hidden hover-trigger p-2" id="mobile-menu-btn" aria-label="Open Menu">
                     <i data-lucide="menu" class="w-7 h-7 text-brand-black dark:text-white"></i>
                 </button>
@@ -246,13 +246,12 @@
         </div>
     </nav>
 
-    <!-- Mobile Menu Overlay - Outside Nav -->
+    <!-- Mobile Menu Overlay -->
     <div id="mobile-menu" class="fixed inset-0 mobile-menu-glass z-[60] transform translate-x-full transition-transform duration-300 flex flex-col justify-start pt-24 items-center gap-8 md:hidden overflow-y-auto">
         <button class="absolute top-6 right-6 hover-trigger p-2 rounded-full bg-gray-100 dark:bg-white/10" id="close-menu-btn" aria-label="Close Menu">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
         
-        <!-- Links with explicit colors to prevent visibility issues -->
         <a href="#about" class="text-3xl font-bold hover-trigger font-heading text-black dark:text-white" onclick="closeMenu()">About</a>
         <a href="#education" class="text-3xl font-bold hover-trigger font-heading text-black dark:text-white" onclick="closeMenu()">Education</a>
         <a href="#experience" class="text-3xl font-bold hover-trigger font-heading text-black dark:text-white" onclick="closeMenu()">Experience</a>
@@ -266,14 +265,13 @@
     <main class="pt-24 pb-12 w-full overflow-x-hidden">
         
         <!-- Hero Section -->
-        <section id="about" class="min-h-[85vh] flex flex-col justify-center items-start px-4 md:px-6 max-w-7xl mx-auto">
-            <div class="reveal-up space-y-6 md:space-y-8 w-full glass-panel p-6 md:p-10 rounded-[2rem] border border-white/40 dark:border-white/10 shadow-2xl">
+        <section id="about" class="min-h-[85vh] flex flex-col justify-center items-start px-4 md:px-6 max-w-7xl mx-auto relative z-10">
+            <div class="reveal-up space-y-6 md:space-y-8 w-full glass-panel p-6 md:p-10 border border-white/40 dark:border-white/10 shadow-2xl">
                 <div class="inline-flex items-center gap-2 px-4 py-2 border border-black/10 dark:border-white/20 rounded-full text-xs font-bold tracking-widest uppercase bg-white/20 dark:bg-black/20">
                     <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
                     Online
                 </div>
                 
-                <!-- Adjusted font sizes for mobile to prevent overflow -->
                 <h1 class="text-4xl sm:text-5xl md:text-8xl font-extrabold tracking-tight leading-[1.1] drop-shadow-sm break-words">
                     Assalamualaikum, I'm <span class="text-brand-accent">Azmain Adil</span>
                 </h1>
@@ -295,32 +293,27 @@
         </section>
 
         <!-- Daily Verse Section -->
-        <section id="quran-verse" class="py-12 px-4 md:px-6">
+        <section id="quran-verse" class="py-20 md:py-28 px-4 md:px-6 relative z-10">
             <div class="max-w-4xl mx-auto text-center reveal-up">
                 <h2 class="text-2xl md:text-4xl font-bold mb-8 font-heading text-brand-black dark:text-brand-white flex items-center justify-center gap-3">
                     <i data-lucide="heart-handshake" class="w-6 h-6 md:w-8 md:h-8 text-brand-accent"></i> Verses To Heal The Soul
                 </h2>
                 
-                <div class="glass-panel p-8 md:p-12 rounded-3xl relative shadow-lg group hover:scale-[1.01] transition-transform duration-300">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-brand-accent rounded-t-3xl"></div>
-                    
-                    <!-- Pre-filled with default verse so "Loading" never shows -->
+                <div class="glass-panel p-8 md:p-12 relative shadow-lg group hover:scale-[1.01] transition-transform duration-300">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-brand-accent rounded-t-[20px]"></div>
                     <p id="quran-verse-arabic" class="text-4xl md:text-6xl font-arabic mb-8 text-brand-black dark:text-white leading-[3] py-4 px-2" dir="rtl" lang="ar" style="line-height: 3 !important;">
                         فَإِنَّ مَعَ الْعُسْرِ يُسْرًا
                     </p>
-                    
-                    <!-- English Translation -->
                     <blockquote class="text-lg md:text-xl font-medium mb-6 text-gray-600 dark:text-gray-300 italic px-2">
                         <span id="quran-verse-text">"So verily, with the hardship, there is relief."</span>
                     </blockquote>
-                    
                     <cite id="quran-verse-ref" class="block text-brand-accent font-bold uppercase tracking-wider text-sm md:text-base not-italic">Surah Ash-Sharh 94:5</cite>
                 </div>
             </div>
         </section>
 
         <!-- Education Section -->
-        <section id="education" class="py-16 md:py-24 px-4 md:px-6">
+        <section id="education" class="py-20 md:py-28 px-4 md:px-6 relative z-10">
             <div class="max-w-7xl mx-auto">
                 <h2 class="text-3xl md:text-5xl font-bold mb-10 md:mb-16 reveal-up flex items-center gap-4 text-brand-black dark:text-brand-white bg-white/20 dark:bg-white/5 p-4 rounded-2xl w-fit backdrop-blur-md">
                     <i data-lucide="graduation-cap" class="w-8 h-8 md:w-10 md:h-10 text-brand-accent"></i> Education
@@ -328,7 +321,7 @@
                 
                 <div class="grid gap-6 md:gap-8">
                     <!-- University of Dhaka -->
-                    <div class="reveal-up pro-card p-6 md:p-10 glass-panel rounded-3xl relative overflow-hidden group hover-trigger">
+                    <div class="reveal-up pro-card p-6 md:p-10 glass-panel relative overflow-hidden group hover-trigger">
                         <div class="flex flex-col md:flex-row md:items-center gap-6 relative z-10">
                             <img src="https://upload.wikimedia.org/wikipedia/en/c/cb/Dhaka_University_logo.svg" alt="DU Logo" class="w-16 h-16 md:w-20 md:h-20 object-contain p-2 bg-white rounded-xl shadow-sm self-start md:self-center">
                             <div class="flex-1">
@@ -342,7 +335,7 @@
                     </div>
 
                     <!-- Dhaka City College -->
-                    <div class="reveal-up pro-card p-6 md:p-10 glass-panel rounded-3xl hover-trigger">
+                    <div class="reveal-up pro-card p-6 md:p-10 glass-panel hover-trigger">
                         <div class="flex flex-col md:flex-row md:items-center gap-6">
                             <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Dhaka_City_College_Seal.svg/250px-Dhaka_City_College_Seal.svg.png" alt="DCC Logo" class="w-16 h-16 md:w-20 md:h-20 object-contain p-2 bg-white rounded-xl shadow-sm self-start md:self-center">
                             <div class="flex-1">
@@ -359,7 +352,7 @@
                     </div>
 
                     <!-- Dhanmondi Govt Boys -->
-                     <div class="reveal-up pro-card p-6 md:p-10 glass-panel rounded-3xl hover-trigger">
+                     <div class="reveal-up pro-card p-6 md:p-10 glass-panel hover-trigger">
                         <div class="flex flex-col md:flex-row md:items-center gap-6">
                             <img src="https://upload.wikimedia.org/wikipedia/bn/2/2c/ধানমন্ডি_গভ._বয়েজ_হাই_স্কুলের_লোগো.png" alt="School Logo" class="w-16 h-16 md:w-20 md:h-20 object-contain p-2 bg-white rounded-xl shadow-sm self-start md:self-center">
                             <div class="flex-1">
@@ -376,18 +369,18 @@
         </section>
 
         <!-- Experience Section -->
-        <section id="experience" class="py-16 md:py-24 px-4 md:px-6">
+        <section id="experience" class="py-20 md:py-28 px-4 md:px-6 relative z-10">
             <div class="max-w-7xl mx-auto">
                 <h2 class="text-3xl md:text-5xl font-bold mb-10 md:mb-16 reveal-up flex items-center gap-4 text-brand-black dark:text-brand-white bg-white/20 dark:bg-white/5 p-4 rounded-2xl w-fit backdrop-blur-md">
                     <i data-lucide="briefcase" class="w-8 h-8 md:w-10 md:h-10 text-brand-accent"></i> Experience
                 </h2>
                 
                 <div class="grid md:grid-cols-2 gap-6 md:gap-8">
-                    <div class="reveal-up pro-card p-6 md:p-8 glass-panel rounded-3xl relative hover-trigger">
+                    <div class="reveal-up pro-card p-6 md:p-8 glass-panel relative hover-trigger">
                         <div class="flex items-start gap-4 mb-4">
                             <img src="https://github.com/azmain-adil/resume/blob/main/images/ucc.png?raw=true" alt="UCC Logo" class="w-10 h-10 md:w-12 md:h-12 rounded-lg object-contain shadow-sm bg-white p-1">
                             <div>
-                                <span class="text-brand-accent font-bold text-xs md:text-sm uppercase tracking-wider mb-1 block">Sep 2024 - Present</span>
+                                <span class="text-brand-accent font-bold text-xs md:text-sm uppercase tracking-wider mb-1 block">September 2024 - Present</span>
                                 <h3 class="text-xl md:text-2xl font-bold font-heading">Lecturer of Marketing</h3>
                                 <p class="text-gray-500 font-bold text-sm md:text-base">UCC Group</p>
                             </div>
@@ -399,11 +392,11 @@
                         </ul>
                     </div>
 
-                    <div class="reveal-up pro-card p-6 md:p-8 glass-panel rounded-3xl relative hover-trigger">
+                    <div class="reveal-up pro-card p-6 md:p-8 glass-panel relative hover-trigger">
                         <div class="flex items-start gap-4 mb-4">
                             <img src="https://github.com/azmain-adil/resume/blob/main/images/chorcha.png?raw=true" alt="Chorcha Logo" class="w-10 h-10 md:w-12 md:h-12 rounded-lg object-contain shadow-sm bg-white p-1">
                             <div>
-                                <span class="text-brand-accent font-bold text-xs md:text-sm uppercase tracking-wider mb-1 block">Jul 2024 - Aug 2024</span>
+                                <span class="text-brand-accent font-bold text-xs md:text-sm uppercase tracking-wider mb-1 block">July 2024 - August 2024</span>
                                 <h3 class="text-xl md:text-2xl font-bold font-heading">Proofreader</h3>
                                 <p class="text-gray-500 font-bold text-sm md:text-base">Chorcha (Business Wing)</p>
                             </div>
@@ -418,44 +411,89 @@
             </div>
         </section>
 
-        <!-- Leadership Section -->
-        <section id="leadership" class="py-16 md:py-24 px-4 md:px-6">
+        <!-- Leadership Section - REDESIGNED with Timeline Look -->
+        <section id="leadership" class="py-20 md:py-28 px-4 md:px-6 relative z-10">
             <div class="max-w-7xl mx-auto">
                 <h2 class="text-3xl md:text-5xl font-bold mb-10 md:mb-16 reveal-up flex items-center gap-4 text-brand-black dark:text-brand-white bg-white/20 dark:bg-white/5 p-4 rounded-2xl w-fit backdrop-blur-md">
                     <i data-lucide="users" class="w-8 h-8 md:w-10 md:h-10 text-brand-accent"></i> Leadership
                 </h2>
                 
-                <div class="grid gap-6">
-                    <div class="reveal-up flex flex-col md:flex-row gap-6 p-6 md:p-8 glass-panel rounded-3xl hover-trigger group">
-                        <div class="md:w-1/3 border-b md:border-b-0 md:border-r border-black/5 dark:border-white/10 pb-4 md:pb-0 md:pr-4">
-                            <span class="text-brand-accent font-bold text-xs md:text-sm uppercase tracking-wider mb-1 block">May 2025 - Present</span>
-                            <h3 class="text-xl md:text-2xl font-bold font-heading group-hover:text-brand-accent transition-colors">DU MIS Club</h3>
-                            <p class="text-xs md:text-sm font-bold text-gray-500 uppercase mt-1">Senior Executive, Branding Wing</p>
-                        </div>
-                        <div class="md:w-2/3 flex items-center">
-                            <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 font-medium">Led branding initiatives and coordinated promotional activities to boost visibility.</p>
+                <div class="grid gap-8">
+                    <!-- DU MIS Club -->
+                    <div class="reveal-up pro-card p-6 md:p-8 glass-panel relative overflow-hidden group hover-trigger border-l-4 border-l-brand-accent">
+                        <div class="flex flex-col md:flex-row gap-6 relative z-10">
+                            <!-- Logo Area -->
+                            <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center p-2 shrink-0 md:mt-1">
+                                <img src="https://github.com/azmain-adil/resume/blob/main/images/3.png" alt="DU MIS Club" class="w-full h-full object-contain"
+                                     onerror="this.onerror=null;this.parentElement.innerHTML='<svg class=\'w-8 h-8 text-gray-400\' xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\'/><circle cx=\'9\' cy=\'7\' r=\'4\'/><path d=\'M22 21v-2a4 4 0 0 0-3-3.87\'/><path d=\'M16 3.13a4 4 0 0 1 0 7.75\'/></svg>'">
+                            </div>
+                            
+                            <div class="flex-1">
+                                <div class="flex flex-col md:flex-row justify-between md:items-start gap-2">
+                                    <div>
+                                        <h3 class="text-xl md:text-2xl font-bold font-heading">DU MIS Club</h3>
+                                        <p class="text-brand-accent font-bold text-sm uppercase tracking-wide mt-1">Senior Executive, Branding Wing</p>
+                                    </div>
+                                    <span class="inline-flex items-center px-3 py-1 rounded-lg bg-gray-100 dark:bg-white/10 text-xs font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300 whitespace-nowrap">
+                                        May 2025 - Present
+                                    </span>
+                                </div>
+                                <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 font-medium mt-4 leading-relaxed">
+                                    Led branding initiatives and coordinated promotional activities to boost DU MIS Club's visibility and engagement. Collaborated with team members to ensure smooth execution of events and projects.
+                                </p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="reveal-up flex flex-col md:flex-row gap-6 p-6 md:p-8 glass-panel rounded-3xl hover-trigger group">
-                        <div class="md:w-1/3 border-b md:border-b-0 md:border-r border-black/5 dark:border-white/10 pb-4 md:pb-0 md:pr-4">
-                            <span class="text-brand-accent font-bold text-xs md:text-sm uppercase tracking-wider mb-1 block">November 2024 - August 2025</span>
-                            <h3 class="text-xl md:text-2xl font-bold font-heading group-hover:text-brand-accent transition-colors">DU Career Club</h3>
-                            <p class="text-xs md:text-sm font-bold text-gray-500 uppercase mt-1">Executive, HR Wing</p>
-                        </div>
-                        <div class="md:w-2/3 flex items-center">
-                            <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 font-medium">Spearheaded HR strategies and increased event attendance by 30% through efficient delegation.</p>
+                    <!-- DU Career Club -->
+                    <div class="reveal-up pro-card p-6 md:p-8 glass-panel relative overflow-hidden group hover-trigger border-l-4 border-l-brand-accent">
+                        <div class="flex flex-col md:flex-row gap-6 relative z-10">
+                            <!-- Logo Area -->
+                            <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center p-2 shrink-0 md:mt-1">
+                                <img src="https://github.com/azmain-adil/resume/blob/main/images/1.jpeg" alt="DUCC" class="w-full h-full object-contain"
+                                     onerror="this.onerror=null;this.parentElement.innerHTML='<svg class=\'w-8 h-8 text-gray-400\' xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><rect width=\'20\' height=\'14\' x=\'2\' y=\'7\' rx=\'2\' ry=\'2\'/><path d=\'M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16\'/></svg>'">
+                            </div>
+                            
+                            <div class="flex-1">
+                                <div class="flex flex-col md:flex-row justify-between md:items-start gap-2">
+                                    <div>
+                                        <h3 class="text-xl md:text-2xl font-bold font-heading">DU Career Club</h3>
+                                        <p class="text-brand-accent font-bold text-sm uppercase tracking-wide mt-1">Executive, HR Wing</p>
+                                    </div>
+                                    <span class="inline-flex items-center px-3 py-1 rounded-lg bg-gray-100 dark:bg-white/10 text-xs font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300 whitespace-nowrap">
+                                        Nov 2024 - Aug 2025
+                                    </span>
+                                </div>
+                                <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 font-medium mt-4 leading-relaxed">
+                                    Spearheaded HR strategies to streamline communication, delegate responsibilities, and cultivate an inclusive and efficient environment within the DUCC executive team. Increased club event attendance by 30%.
+                                </p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="reveal-up flex flex-col md:flex-row gap-6 p-6 md:p-8 glass-panel rounded-3xl hover-trigger group">
-                        <div class="md:w-1/3 border-b md:border-b-0 md:border-r border-black/5 dark:border-white/10 pb-4 md:pb-0 md:pr-4">
-                            <span class="text-brand-accent font-bold text-xs md:text-sm uppercase tracking-wider mb-1 block">November 2024 - Present</span>
-                            <h3 class="text-xl md:text-2xl font-bold font-heading group-hover:text-brand-accent transition-colors">DU Research Society</h3>
-                            <p class="text-xs md:text-sm font-bold text-gray-500 uppercase mt-1">General Member</p>
-                        </div>
-                        <div class="md:w-2/3 flex items-center">
-                            <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 font-medium">Engaged in structured research workshops and data-driven academic dialogues.</p>
+                    <!-- DU Research Society -->
+                    <div class="reveal-up pro-card p-6 md:p-8 glass-panel relative overflow-hidden group hover-trigger border-l-4 border-l-brand-accent">
+                        <div class="flex flex-col md:flex-row gap-6 relative z-10">
+                            <!-- Logo Area -->
+                            <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center p-2 shrink-0 md:mt-1">
+                                <img src="https://github.com/azmain-adil/resume/blob/main/images/2.png" alt="DU Research Society" class="w-full h-full object-contain"
+                                     onerror="this.onerror=null;this.parentElement.innerHTML='<svg class=\'w-8 h-8 text-gray-400\' xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z\'/></svg>'">
+                            </div>
+                            
+                            <div class="flex-1">
+                                <div class="flex flex-col md:flex-row justify-between md:items-start gap-2">
+                                    <div>
+                                        <h3 class="text-xl md:text-2xl font-bold font-heading">DU Research Society</h3>
+                                        <p class="text-brand-accent font-bold text-sm uppercase tracking-wide mt-1">General Member</p>
+                                    </div>
+                                    <span class="inline-flex items-center px-3 py-1 rounded-lg bg-gray-100 dark:bg-white/10 text-xs font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300 whitespace-nowrap">
+                                        Nov 2024 - Present
+                                    </span>
+                                </div>
+                                <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 font-medium mt-4 leading-relaxed">
+                                    Engaged in structured research workshops and contributed to data-driven academic dialogues, supporting a culture of knowledge-sharing and intellectual growth.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -463,7 +501,7 @@
         </section>
 
         <!-- Honors Section -->
-        <section id="honors" class="py-16 md:py-24 px-4 md:px-6">
+        <section id="honors" class="py-20 md:py-28 px-4 md:px-6 relative z-10">
             <div class="max-w-7xl mx-auto">
                 <h2 class="text-3xl md:text-5xl font-bold mb-10 md:mb-16 reveal-up flex items-center gap-4 text-brand-black dark:text-brand-white bg-white/20 dark:bg-white/5 p-4 rounded-2xl w-fit backdrop-blur-md">
                     <i data-lucide="trophy" class="w-8 h-8 md:w-10 md:h-10 text-brand-accent"></i> Honors & Achievements
@@ -471,24 +509,28 @@
                 
                 <div class="grid gap-6">
                     <!-- NTF -->
-                    <div class="reveal-up flex flex-col md:flex-row gap-6 p-6 md:p-8 glass-panel rounded-3xl hover-trigger group">
-                        <div class="md:w-1/3 border-b md:border-b-0 md:border-r border-black/5 dark:border-white/10 pb-4 md:pb-0 md:pr-4">
-                            <h3 class="text-xl md:text-2xl font-bold font-heading group-hover:text-brand-accent transition-colors">National Talent Fest (NTF)</h3>
-                            <p class="text-xs md:text-sm font-bold text-gray-500 uppercase mt-1">Semi-finalist (2025)</p>
-                        </div>
-                        <div class="md:w-2/3 flex items-center">
-                            <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 font-medium">Demonstrated strategic thinking and problem-solving skills by developing and presenting data-driven business solutions in a highly competitive national-level case competition.</p>
+                    <div class="reveal-up pro-card p-6 md:p-8 glass-panel hover-trigger group">
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="md:w-1/3 border-b md:border-b-0 md:border-r border-black/5 dark:border-white/10 pb-4 md:pb-0 md:pr-4">
+                                <h3 class="text-xl md:text-2xl font-bold font-heading group-hover:text-brand-accent transition-colors">National Talent Fest (NTF)</h3>
+                                <p class="text-xs md:text-sm font-bold text-gray-500 uppercase mt-1">Semi-finalist (2025)</p>
+                            </div>
+                            <div class="md:w-2/3 flex items-center">
+                                <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 font-medium">Demonstrated strategic thinking and problem-solving skills by developing and presenting data-driven business solutions in a highly competitive national-level case competition.</p>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- SkinO - Fixed Spelling from Skin'O -->
-                    <div class="reveal-up flex flex-col md:flex-row gap-6 p-6 md:p-8 glass-panel rounded-3xl hover-trigger group">
-                        <div class="md:w-1/3 border-b md:border-b-0 md:border-r border-black/5 dark:border-white/10 pb-4 md:pb-0 md:pr-4">
-                            <h3 class="text-xl md:text-2xl font-bold font-heading group-hover:text-brand-accent transition-colors">SkinO Business Intelligence</h3>
-                            <p class="text-xs md:text-sm font-bold text-gray-500 uppercase mt-1">Semi-finalist (2025)</p>
-                        </div>
-                        <div class="md:w-2/3 flex items-center">
-                            <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 font-medium">Analyzed real-world business intelligence challenges and delivered structured, insight-driven strategies, showcasing analytical depth and decision-making capabilities.</p>
+                    <!-- SkinO -->
+                    <div class="reveal-up pro-card p-6 md:p-8 glass-panel hover-trigger group">
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="md:w-1/3 border-b md:border-b-0 md:border-r border-black/5 dark:border-white/10 pb-4 md:pb-0 md:pr-4">
+                                <h3 class="text-xl md:text-2xl font-bold font-heading group-hover:text-brand-accent transition-colors">SkinO Business Intelligence</h3>
+                                <p class="text-xs md:text-sm font-bold text-gray-500 uppercase mt-1">Semi-finalist (2025)</p>
+                            </div>
+                            <div class="md:w-2/3 flex items-center">
+                                <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 font-medium">Analyzed real-world business intelligence challenges and delivered structured, insight-driven strategies, showcasing analytical depth and decision-making capabilities.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -496,7 +538,7 @@
         </section>
 
         <!-- Skills Section - REFORMATTED -->
-        <section id="skills" class="py-16 md:py-24 px-4 md:px-6">
+        <section id="skills" class="py-20 md:py-28 px-4 md:px-6 relative z-10">
             <div class="max-w-7xl mx-auto">
                 <h2 class="text-3xl md:text-5xl font-bold mb-10 md:mb-16 reveal-up flex items-center gap-4 text-brand-black dark:text-brand-white bg-white/20 dark:bg-white/5 p-4 rounded-2xl w-fit backdrop-blur-md">
                     <i data-lucide="cpu" class="w-8 h-8 md:w-10 md:h-10 text-brand-accent"></i> Skills
@@ -505,8 +547,8 @@
                 <div class="grid md:grid-cols-2 gap-8 md:gap-12">
                     
                     <!-- Technical Skills -->
-                    <div class="reveal-up glass-panel p-6 md:p-8 rounded-3xl">
-                        <h3 class="text-lg md:text-xl font-bold uppercase tracking-widest mb-6 text-gray-500 flex items-center gap-2 border-b border-gray-200 dark:border-gray-700 pb-2">
+                    <div class="reveal-up glass-panel p-6 md:p-8">
+                        <h3 class="text-lg md:text-xl font-bold uppercase tracking-widest mb-6 text-gray-500 flex items-center gap-2 border-b border-black/5 dark:border-white/10 pb-2">
                             <i data-lucide="code-2" class="w-5 h-5"></i> Technical Skills
                         </h3>
                         <ul class="list-disc pl-5 space-y-2 text-base md:text-lg font-medium text-gray-700 dark:text-gray-300">
@@ -525,11 +567,11 @@
                     </div>
 
                     <!-- Soft Skills & Interests -->
-                    <div class="reveal-up glass-panel p-6 md:p-8 rounded-3xl flex flex-col gap-8">
+                    <div class="reveal-up glass-panel p-6 md:p-8 flex flex-col gap-8">
                         
                         <!-- Soft Skills -->
                         <div>
-                            <h3 class="text-lg md:text-xl font-bold uppercase tracking-widest mb-6 text-gray-500 flex items-center gap-2 border-b border-gray-200 dark:border-gray-700 pb-2">
+                            <h3 class="text-lg md:text-xl font-bold uppercase tracking-widest mb-6 text-gray-500 flex items-center gap-2 border-b border-black/5 dark:border-white/10 pb-2">
                                 <i data-lucide="sparkles" class="w-5 h-5"></i> Soft Skills
                             </h3>
                             <ul class="list-disc pl-5 space-y-2 text-base md:text-lg font-medium text-gray-700 dark:text-gray-300">
@@ -537,14 +579,14 @@
                                 <li>Event Planning</li>
                                 <li>Problem Solving</li>
                                 <li>Time Management</li>
-                                <li>Multitasking</li> <!-- Spelling Fixed -->
-                                <li>Attention to Detail</li> <!-- Spelling Fixed -->
+                                <li>Multitasking</li> 
+                                <li>Attention to Detail</li>
                             </ul>
                         </div>
 
-                        <!-- Interests (Moved here) -->
+                        <!-- Interests -->
                         <div>
-                            <h3 class="text-lg md:text-xl font-bold uppercase tracking-widest mb-6 text-gray-500 flex items-center gap-2 border-b border-gray-200 dark:border-gray-700 pb-2">
+                            <h3 class="text-lg md:text-xl font-bold uppercase tracking-widest mb-6 text-gray-500 flex items-center gap-2 border-b border-black/5 dark:border-white/10 pb-2">
                                 <i data-lucide="heart" class="w-5 h-5"></i> Interests
                             </h3>
                             <ul class="list-disc pl-5 space-y-2 text-base md:text-lg font-medium text-gray-700 dark:text-gray-300">
@@ -561,7 +603,7 @@
         </section>
 
         <!-- Social Section -->
-        <section id="social" class="py-16 md:py-24 px-4 md:px-6">
+        <section id="social" class="py-20 md:py-28 px-4 md:px-6 relative z-10">
             <div class="max-w-7xl mx-auto">
                 <h2 class="text-3xl md:text-5xl font-bold mb-10 md:mb-16 reveal-up flex items-center gap-4 text-brand-black dark:text-brand-white bg-white/20 dark:bg-white/5 p-4 rounded-2xl w-fit backdrop-blur-md">
                     <i data-lucide="share-2" class="w-8 h-8 md:w-10 md:h-10 text-brand-accent"></i> Social
@@ -569,7 +611,7 @@
                 
                 <div class="grid md:grid-cols-2 gap-6 md:gap-8">
                     <!-- Facebook -->
-                    <a href="https://www.facebook.com/azmain.adil.23" target="_blank" class="reveal-up glass-panel p-6 md:p-8 rounded-3xl flex items-center gap-6 group hover:border-[#1877F2] transition-colors hover-trigger">
+                    <a href="https://www.facebook.com/azmain.adil.23" target="_blank" class="reveal-up glass-panel p-6 md:p-8 flex items-center gap-6 group hover:border-[#1877F2] transition-colors hover-trigger">
                         <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#1877F2]/10 flex items-center justify-center group-hover:bg-[#1877F2] transition-colors flex-shrink-0">
                             <i data-lucide="facebook" class="w-6 h-6 md:w-8 md:h-8 text-[#1877F2] group-hover:text-white transition-colors"></i>
                         </div>
@@ -581,7 +623,7 @@
                     </a>
 
                     <!-- LinkedIn -->
-                    <a href="https://www.linkedin.com/in/azmain-adil-/" target="_blank" class="reveal-up glass-panel p-6 md:p-8 rounded-3xl flex items-center gap-6 group hover:border-[#0A66C2] transition-colors hover-trigger">
+                    <a href="https://www.linkedin.com/in/azmain-adil-/" target="_blank" class="reveal-up glass-panel p-6 md:p-8 flex items-center gap-6 group hover:border-[#0A66C2] transition-colors hover-trigger">
                         <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#0A66C2]/10 flex items-center justify-center group-hover:bg-[#0A66C2] transition-colors flex-shrink-0">
                             <i data-lucide="linkedin" class="w-6 h-6 md:w-8 md:h-8 text-[#0A66C2] group-hover:text-white transition-colors"></i>
                         </div>
@@ -596,7 +638,7 @@
         </section>
 
         <!-- Footer / Contact -->
-        <footer id="contact" class="py-16 md:py-24 px-4 md:px-6 glass-panel border-t border-white/20">
+        <footer id="contact" class="py-20 md:py-28 px-4 md:px-6 glass-panel border-t border-white/20 relative z-10">
             <div class="max-w-7xl mx-auto text-center reveal-up">
                 <h2 class="text-3xl md:text-6xl font-extrabold mb-8 font-heading text-brand-black dark:text-brand-white">Ready to create something great?</h2>
                 <div class="flex flex-col md:flex-row justify-center gap-4 md:gap-6 mt-8">
